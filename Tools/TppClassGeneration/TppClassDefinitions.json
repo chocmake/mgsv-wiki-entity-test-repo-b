@@ -15998,7 +15998,8 @@
         "offset": 64,
         "ptrType": null,
         "size": 8,
-        "type": "String"
+        "type": "String",
+        "comments": "The text that will use the settings (e.g cmn-mb-sys-M)"
       },
       {
         "arraySize": 1,
@@ -16009,7 +16010,8 @@
         "offset": 72,
         "ptrType": null,
         "size": 24,
-        "type": "FilePtr"
+        "type": "FilePtr",
+        "comments": "Path to the font, usually `.fnt`. If left empty, it will use the language's ffnt that is located in `/Assets/tpp/font`"
       },
       {
         "arraySize": 1,
@@ -16020,7 +16022,8 @@
         "offset": 96,
         "ptrType": null,
         "size": 8,
-        "type": "Path"
+        "type": "Path",
+        "comments": "The `.ftex` path to the corresponding `.fnt`"
       },
       {
         "arraySize": 1,
@@ -16031,7 +16034,8 @@
         "offset": 104,
         "ptrType": null,
         "size": 4,
-        "type": "float"
+        "type": "float",
+        "comments": "Width of text"
       },
       {
         "arraySize": 1,
@@ -16042,7 +16046,8 @@
         "offset": 108,
         "ptrType": null,
         "size": 4,
-        "type": "float"
+        "type": "float",
+        "comments": "Height of text"
       },
       {
         "arraySize": 1,
@@ -16053,7 +16058,8 @@
         "offset": 112,
         "ptrType": null,
         "size": 4,
-        "type": "float"
+        "type": "float",
+        "comments": "Space between characters"
       },
       {
         "arraySize": 1,
@@ -16064,7 +16070,8 @@
         "offset": 116,
         "ptrType": null,
         "size": 4,
-        "type": "float"
+        "type": "float",
+        "comments": "Spaces between each line"
       },
       {
         "arraySize": 1,
@@ -20568,7 +20575,8 @@
         "offset": 376,
         "ptrType": null,
         "size": 8,
-        "type": "String"
+        "type": "String",
+        "comments": "Name of NavWorld."
       },
       {
         "arraySize": 1,
@@ -20579,7 +20587,8 @@
         "offset": 384,
         "ptrType": null,
         "size": 4,
-        "type": "uint32"
+        "type": "uint32",
+        "comments": "If the file is larger, a .1.nav2 will be generated."
       },
       {
         "arraySize": 1,
@@ -20601,7 +20610,8 @@
         "offset": 408,
         "ptrType": null,
         "size": 4,
-        "type": "uint32"
+        "type": "uint32",
+        "comments": "Height and width, in meters, of a single 2D grid cell used to generate SegmentChunks."
       },
       {
         "arraySize": 1,
@@ -20612,7 +20622,8 @@
         "offset": 412,
         "ptrType": null,
         "size": 4,
-        "type": "uint32"
+        "type": "uint32",
+        "comments": "Height and width, in meters, of a single tile. By default, the same as the size of a small block."
       },
       {
         "arraySize": 1,
@@ -20623,7 +20634,8 @@
         "offset": 416,
         "ptrType": null,
         "size": 4,
-        "type": "uint32"
+        "type": "uint32",
+        "comments": "Height and width, in meters, of a single SearchSpace bucket."
       },
       {
         "arraySize": 1,
