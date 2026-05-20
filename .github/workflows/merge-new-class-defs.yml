@@ -1,0 +1,52 @@
+# Workflow for detecting PRs for the entity class defs update automation and auto-merging into main branch
+
+name: Auto merge updated TppClassDefinitions JSON
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize] # sync is when more commits added while PR active (would only occur if auto merging isn't immediate)
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge-new-defs-pr:
+    if: github.event.pull_request.head.ref == 'auto-class-defs' # only trigger for PRs coming from the auto branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v9
+        with:
+          script: |
+            const wikiBotUser = 'mgsv-wiki-helper-test[bot]', // `[bot]` suffix necessary to match even though not part of username proper
+                  autoBranch = 'auto-class-defs',
+                  baseBranch = 'main';
+
+            const prs = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              base: baseBranch,
+              head: `${context.repo.owner}:${autoBranch}`
+            });
+
+            if (!prs.data.length) return
+
+            const pr = prs.data.find((pr) => pr.user && pr.user.login === wikiBotUser); // only select first given should only be one ever for that branch from the bot
+
+            if (!pr) return
+
+            try {
+              const response = await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'merge',
+                commit_title: `Merge pull request #${pr.number} from ${autoBranch}` // override the default merge title to remove the repo owner's username
+              });
+
+              core.info(`Merged PR #${pr.number}: ${response.data.sha}`);
+            } catch (error) {
+              core.warning(`Merge failed: ${error.message} (status ${error.status})`);
+            }
